@@ -7,22 +7,22 @@ public class Movement : MonoBehaviour
 
     public float speed = 2.0f;
     private Vector3 pos;
-    //private Transform trans;
-    bool rotated = false;
+    private bool rotated = false;
+	private TrailColliders trailColliders;
 
     // Use this for initialization
     void Start()
     {
         pos = transform.position;
-        //trans = transform;
 
+		trailColliders = GetComponent<TrailColliders>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.D) /*&& trans.position == pos*/)
+        if (Input.GetKeyDown(KeyCode.D))
         {
             if (rotated == false)
             {
@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour
                 rotated = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.A) /*&& trans.position == pos*/)
+        if (Input.GetKeyDown(KeyCode.A))
         {
             if (rotated == false)
             {
@@ -42,6 +42,8 @@ public class Movement : MonoBehaviour
         {
             pos += transform.forward;
             rotated = false;
+
+			trailColliders.UpdateColliders();
         }
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
     }
