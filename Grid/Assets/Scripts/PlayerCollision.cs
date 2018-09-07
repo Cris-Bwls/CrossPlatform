@@ -6,9 +6,14 @@ public class PlayerCollision : MonoBehaviour {
 
     public ParticleSystem particleSystem;
 
+	private TrailColliders trailColliders;
+	private TrailRenderer trailRenderer;
+
 	// Use this for initialization
 	void Awake ()
     {
+		trailColliders = GetComponent<TrailColliders>();
+		trailRenderer = GetComponent<TrailRenderer>();
 	}
 	
 
@@ -18,7 +23,11 @@ public class PlayerCollision : MonoBehaviour {
 
         if (collider.tag != "Ground")
         {
+			particleSystem.Stop();
             particleSystem.Play();
+			trailColliders.DisableColliders();
+			trailRenderer.Clear();
+
         }
 	}
 }

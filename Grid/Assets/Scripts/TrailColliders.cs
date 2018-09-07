@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrailColliders : MonoBehaviour {
-	
+
+	public GameObject trailColliderPrefab;
+
 	private TrailRenderer trailRenderer;
 	private Movement movement;
 
-	private List<BoxCollider> colliderList = new List<BoxCollider>(); 
+	private List<GameObject> colliderList = new List<GameObject>();
+	private int listIterator = 0; 
 
 	// Use this for initialization
 	void Start ()
@@ -15,19 +18,29 @@ public class TrailColliders : MonoBehaviour {
 		trailRenderer = GetComponent<TrailRenderer>();
 		movement = GetComponent<Movement>();
 
-		int colliderNum = 0;
+		int colliderNum = (int)(trailRenderer.time * movement.speed);
 		for (int i = 0; i < colliderNum; ++i)
 		{
-			var temp = new BoxCollider();
-			temp.enabled = false;
-			temp.isTrigger = true;
-			colliderList.Add(new BoxCollider());
+			GameObject temp = Instantiate(trailColliderPrefab);
+			colliderList.Add(temp);
 		}
 	}
 	
-	// Update is called once per frame
-	public void UpdateColliders ()
+	public void PlaceCollider(Vector3 pos)
 	{
+		if (listIterator >= colliderList.Count)
+			listIterator = 0;
 		
+		colliderList[listIterator].SetActive(true);
+		colliderList[listIterator].transform.position = pos;
+		listIterator++;
+	}
+
+	public void DisableColliders()
+	{
+		foreach (GameObject collider in colliderList)
+		{
+			collider.SetActive(false);
+		}
 	}
 }

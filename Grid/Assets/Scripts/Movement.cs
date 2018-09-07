@@ -9,13 +9,16 @@ public class Movement : MonoBehaviour
     private Vector3 pos;
     private bool rotated = false;
 	private TrailColliders trailColliders;
+	private Vector3 prevPos;
 
-    // Use this for initialization
-    void Start()
+	// Use this for initialization
+	void Start()
     {
-        pos = transform.position;
+		prevPos = transform.position;
+        pos = transform.position + transform.forward;
 
 		trailColliders = GetComponent<TrailColliders>();
+		
     }
 
     // Update is called once per frame
@@ -40,10 +43,12 @@ public class Movement : MonoBehaviour
         }
         if (pos == transform.position)
         {
+			trailColliders.PlaceCollider(prevPos);
+			prevPos = pos;
+
             pos += transform.forward;
             rotated = false;
 
-			trailColliders.UpdateColliders();
         }
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
     }

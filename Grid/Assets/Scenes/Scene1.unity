@@ -305,14 +305,14 @@ GameObject:
   - component: {fileID: 1361993907}
   - component: {fileID: 1361993906}
   - component: {fileID: 1361993911}
-  - component: {fileID: 1361993910}
   - component: {fileID: 1361993912}
   - component: {fileID: 1361993915}
   - component: {fileID: 1361993914}
   - component: {fileID: 1361993913}
   - component: {fileID: 1361993916}
+  - component: {fileID: 1361993910}
   m_Layer: 0
-  m_Name: Player1
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,19 +392,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361993905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee2415ca2c9745641b4b841f5a7dccd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 469c8d85db05e384f9167a38b63a6d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailMaterial: {fileID: 2100000, guid: b3de7231b7781b6438dc640ce3a4c1f2, type: 2}
-  lifeTime: 20
-  changeTime: 1
-  widthStart: 1
-  widthEnd: 1
-  vertexDistanceMin: 0.1
-  renderDirection: {x: 0, y: 0, z: -1}
-  colliderIsTrigger: 1
-  colliderEnabled: 1
-  pausing: 0
+  trailColliderPrefab: {fileID: 1562565331008770, guid: 310c57754b2278f49b5a022056573566,
+    type: 2}
 --- !u!114 &1361993911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +622,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1132154038
+  randomSeed: -330460615
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1080,7 +1072,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: -90, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -3944,7 +3936,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &1710892888
 GameObject:
