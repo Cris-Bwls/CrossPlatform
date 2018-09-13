@@ -6,12 +6,15 @@ public class PlayerCollision : MonoBehaviour {
 
     public ParticleSystem particleSystem;
 	public float colliderTimeOut = 1.0f;
+	public float phase = 0.1f;
 
 	private TrailColliders trailColliders;
 	private TrailRenderer trailRenderer;
 	private Collider collider;
+	private MeshRenderer meshRenderer;
 
 	private float startTimeOut;
+	private float startPhase;
 
 	// Use this for initialization
 	private void Awake ()
@@ -19,15 +22,28 @@ public class PlayerCollision : MonoBehaviour {
 		trailColliders = GetComponent<TrailColliders>();
 		trailRenderer = GetComponent<TrailRenderer>();
 		collider = GetComponent<Collider>();
+		meshRenderer = GetComponent<MeshRenderer>();
 	}
 
 	private void Update()
 	{
 		if (!collider.enabled)
 		{
-			if (startTimeOut - Time.realtimeSinceStartup > colliderTimeOut)
+			if (startPhase == 0)
+				startPhase = Time.realtimeSinceStartup;
+
+			if (Time.realtimeSinceStartup - startPhase > phase)
+			{
+				startPhase = Time.realtimeSinceStartup;
+				meshRenderer.enabled = !meshRenderer.enabled;
+			}
+
+			if (Time.realtimeSinceStartup - startTimeOut > colliderTimeOut)
 			{
 				collider.enabled = true;
+				meshRenderer.enabled = true;
+				startPhase = 0;
+				particleSystem.Stop();
 			}
 		}
 	}
@@ -43,6 +59,8 @@ public class PlayerCollision : MonoBehaviour {
             particleSystem.Play();
 			trailColliders.DisableColliders();
 			trailRenderer.Clear();
+
+			DisableCollider();
         }
 	}
 
