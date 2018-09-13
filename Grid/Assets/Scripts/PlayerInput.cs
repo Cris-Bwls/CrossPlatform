@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public KeyCode RotateRightKey;
-    public KeyCode RotateLeftKey;
-    public KeyCode JumpKey;
-    public KeyCode DodgeRightKey;
-    public KeyCode DodgeLeftKey;
-    public KeyCode TunnelingKey;
+	public int playerNumber = 1;
+
+	[HideInInspector]	
+	public string rotateKey = "Horizontal";
+	[HideInInspector]
+	public string jumpKey = "Jump";
+	[HideInInspector]
+	public string tunnelKey = "Tunnel";
+	[HideInInspector]
+	public string dodgeLeftKey = "DodgeLeft";
+	[HideInInspector]
+	public string dodgeRightKey = "DodgeRight";
+
+	private void Awake()
+	{
+		rotateKey += playerNumber.ToString();
+		jumpKey += playerNumber.ToString();
+		tunnelKey += playerNumber.ToString();
+		dodgeLeftKey += playerNumber.ToString();
+		dodgeRightKey += playerNumber.ToString();
+	}
 }

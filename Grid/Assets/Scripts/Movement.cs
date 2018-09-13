@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
+	public int count;
     public float speed = 2.0f;
     private Vector3 pos;
     private bool rotated = false;
 	private TrailColliders trailColliders;
 	private Vector3 prevPos;
-    public PlayerInput PlayerKeys;
+    public PlayerInput playerKeys;
 
     public int maxJumpSpaces = 3;
     public int maxJumpDelay = 2;
@@ -26,73 +26,63 @@ public class Movement : MonoBehaviour
 
     private bool dodging = false;
     public int maxDodgeCount = 3;
-    private int currentDodgeSpaces = 0;    
-
-    //public KeyCode RotateRightKey;
-    //public KeyCode RotateLeftKey;
-    //public KeyCode JumpKey;
-
-    private float userTime;
+    private int currentDodgeSpaces = 0;
 
     // Use this for initialization
     void Start()
     {
-        PlayerKeys = gameObject.GetComponent<PlayerInput>();
+        playerKeys = gameObject.GetComponent<PlayerInput>();
         prevPos = transform.position;
         pos = transform.position + transform.forward;
 
 		trailColliders = GetComponent<TrailColliders>();
-
-
-
-        //userTime = 0.0f;
+		
     }
 
     // Update is called once per frame
     void Update()
     {
-        //userTime += Time.deltaTime; 
-
-        if (Input.GetKeyDown(PlayerKeys.RotateRightKey) && canTurn)
+		// Rotate Right
+        if (Input.GetButtonDown(playerKeys.rotateKey) && canTurn)
         {
             if (rotated == false)
             {
+				count++;
                 transform.Rotate(0, 90, 0);
                 rotated = true;
             }
         }
 
-        if (Input.GetKeyDown(PlayerKeys.RotateLeftKey) && canTurn)
+		// Rotate Left
+        if (Input.GetButtonDown(playerKeys.rotateKey) && canTurn)
         {
             if (rotated == false)
             {
+				count++;
                 transform.Rotate(0, -90, 0);
                 rotated = true;
             }
         }
-
-        //userTime += Time.deltaTime;
-        if (Input.GetKeyDown(PlayerKeys.JumpKey))
+		
+		// Jump
+        if (Input.GetButtonDown(playerKeys.jumpKey))
         {
-            canTurn = false;
-
             if (!jumping)
             {
+				canTurn = false;
                 jumping = true;
                 currentJumpSpace = 0;
                 transform.position += transform.up;
                 pos += transform.up;
-            }
-
-            
+            }            
         }
 
-        if (Input.GetKeyDown(PlayerKeys.TunnelingKey))
+		// Tunnel
+        if (Input.GetButtonDown(playerKeys.tunnelKey))
         {
-            canTurn = false;
-
             if (!tunneling)
             {
+				canTurn = false;
                 tunneling = true;
                 currentTunnelSpace = 0;
                 transform.position -= transform.up;
@@ -100,7 +90,8 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(PlayerKeys.DodgeRightKey))
+		// Dodge Right
+        if (Input.GetButtonDown(playerKeys.dodgeRightKey))
         {
             if(!dodging)
             {
@@ -110,7 +101,8 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(PlayerKeys.DodgeLeftKey))
+		// Dodge Left
+        if (Input.GetButtonDown(playerKeys.dodgeLeftKey))
         {
             if(!dodging)
             {
@@ -120,6 +112,7 @@ public class Movement : MonoBehaviour
             }
         }
 
+		// Update Position 
         if (pos == transform.position)
         {
 			trailColliders.PlaceCollider(prevPos);
