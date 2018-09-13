@@ -24,7 +24,7 @@ public class Score : MonoBehaviour {
 
 	public void AddToScore(int score)
 	{
-		m_nScore = score;
+		m_nScore += score;
 	}
 
 	public void ClearScore()

@@ -63,14 +63,14 @@ public class PlayerCollision : MonoBehaviour {
 			trailColliders.DisableColliders();
 			trailRenderer.Clear();
 
-			if(collider == this)
+			if(collider.tag == tag)
 			{
 				m_score.ClearScore();
 			}
 			else
 			{
 				m_score.ClearScore();
-				m_score.AddToScore(100);
+				m_score.otherPlayer.AddToScore(100);
 			}
 
 
