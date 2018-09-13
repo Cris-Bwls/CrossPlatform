@@ -112,61 +112,66 @@ public class Movement : MonoBehaviour
             }
         }
 
+		       
+    }
+
+	private void FixedUpdate()
+	{
 		// Update Position 
-        if (pos == transform.position)
-        {
+		if (pos == transform.position)
+		{
 			trailColliders.PlaceCollider(prevPos);
 			prevPos = pos;
 
-            pos += transform.forward;
-            rotated = false;
+			pos += transform.forward;
+			rotated = false;
 
-            if (jumping)
-            {
-                if (currentJumpSpace < maxJumpSpaces + maxJumpDelay)
-                {
-                    currentJumpSpace++;
-                    if (currentJumpSpace == maxJumpSpaces)
-                    {
-                        transform.position -= transform.up;
-                        pos -= transform.up;
-                        canTurn = true;
-                    }
-                }
-                else
-                    jumping = false;
-            }
+			if (jumping)
+			{
+				if (currentJumpSpace < maxJumpSpaces + maxJumpDelay)
+				{
+					currentJumpSpace++;
+					if (currentJumpSpace == maxJumpSpaces)
+					{
+						transform.position -= transform.up;
+						pos -= transform.up;
+						canTurn = true;
+					}
+				}
+				else
+					jumping = false;
+			}
 
-            if (dodging)
-            {
-                if(currentDodgeSpaces < maxDodgeCount)             
-                    currentDodgeSpaces++;
-                else
-                {
-                    currentDodgeSpaces = 0;
-                    dodging = false;
-                }
-            }
+			if (dodging)
+			{
+				if (currentDodgeSpaces < maxDodgeCount)
+					currentDodgeSpaces++;
+				else
+				{
+					currentDodgeSpaces = 0;
+					dodging = false;
+				}
+			}
 
-            if (tunneling)
-            {
-                if (currentTunnelSpace < maxTunnelSpaces + maxTunnelDelay)
-                {
-                    currentTunnelSpace++;
-                    if (currentTunnelSpace == maxTunnelSpaces)
-                    {
-                        transform.position += transform.up;
-                        pos += transform.up;
-                        canTurn = true;
-                    }
-                }
-                else
-                {
-                    tunneling = false;
-                }
-            }
-        }
-        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
-    }
-    
+			if (tunneling)
+			{
+				if (currentTunnelSpace < maxTunnelSpaces + maxTunnelDelay)
+				{
+					currentTunnelSpace++;
+					if (currentTunnelSpace == maxTunnelSpaces)
+					{
+						transform.position += transform.up;
+						pos += transform.up;
+						canTurn = true;
+					}
+				}
+				else
+				{
+					tunneling = false;
+				}
+			}
+		}
+
+		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+	}
 }
