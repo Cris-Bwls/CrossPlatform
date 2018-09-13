@@ -28,7 +28,7 @@ public class PlayerCollision : MonoBehaviour {
 		m_score = GetComponent<Score>();
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if (!collider.enabled)
 		{
