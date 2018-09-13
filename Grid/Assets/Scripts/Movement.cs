@@ -111,9 +111,7 @@ public class Movement : MonoBehaviour
                 pos -= transform.right + transform.right;
             }
         }
-
-		       
-    }
+	}
 
 	private void FixedUpdate()
 	{
