@@ -17,10 +17,4 @@ public class CoinManager : MonoBehaviour {
 			m_CoinList[i].transform.position = new Vector3(Random.value * 100, 0, Random.value * 100);
 		}
 	}
-
-	public void AddCoin()
-	{
-		
-	}
-
 }

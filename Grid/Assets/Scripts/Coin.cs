@@ -22,8 +22,7 @@ public class Coin : MonoBehaviour {
 		if (other.tag == "Player1" || other.tag == "Player2")
 		{
 			other.GetComponent<Score>().AddToScore(100);
-
-			Destroy(this.gameObject);
+			transform.position = new Vector3(Random.value * 100, 0, Random.value * 100);
 		}
 	}
 }
