@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
 		// Rotate Right
-        if (Input.GetButtonDown(playerKeys.rotateKey) && canTurn)
+        if (Input.GetButtonDown(playerKeys.rotateKey) && Input.GetAxisRaw(playerKeys.rotateKey) > 0 && canTurn)
         {
             if (rotated == false)
             {
@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
         }
 
 		// Rotate Left
-        if (Input.GetButtonDown(playerKeys.rotateKey) && canTurn)
+        if (Input.GetButtonDown(playerKeys.rotateKey) && Input.GetAxisRaw(playerKeys.rotateKey) < 0 && canTurn)
         {
             if (rotated == false)
             {
