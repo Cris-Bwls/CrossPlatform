@@ -13,6 +13,8 @@ public class PlayerCollision : MonoBehaviour {
 	private Collider collider;
 	private MeshRenderer meshRenderer;
 
+	private Score m_score;
+
 	private float startTimeOut;
 	private float startPhase;
 
@@ -23,6 +25,7 @@ public class PlayerCollision : MonoBehaviour {
 		trailRenderer = GetComponent<TrailRenderer>();
 		collider = GetComponent<Collider>();
 		meshRenderer = GetComponent<MeshRenderer>();
+		m_score = GetComponent<Score>();
 	}
 
 	private void Update()
@@ -53,12 +56,23 @@ public class PlayerCollision : MonoBehaviour {
     {
         var collider = collision.collider;
 
-        if (collider.tag != "Ground")
-        {
+		if (collider.tag != "Ground" || collider.tag != "Coin")
+		{
 			particleSystem.Stop();
-            particleSystem.Play();
+			particleSystem.Play();
 			trailColliders.DisableColliders();
 			trailRenderer.Clear();
+
+			if(collider == this)
+			{
+				m_score.ClearScore();
+			}
+			else
+			{
+				m_score.ClearScore();
+				m_score.AddToScore(100);
+			}
+
 
 			DisableCollider();
         }

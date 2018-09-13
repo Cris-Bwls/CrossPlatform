@@ -22,6 +22,7 @@ public class TrailColliders : MonoBehaviour {
 		for (int i = 0; i < colliderNum; ++i)
 		{
 			GameObject temp = Instantiate(trailColliderPrefab);
+			temp.tag = this.tag;
 			colliderList.Add(temp);
 		}
 	}
