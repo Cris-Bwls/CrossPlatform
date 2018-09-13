@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour {
 
+	CoinManager m_pheonix;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +22,7 @@ public class Coin : MonoBehaviour {
 		if (other.tag == "Player1" || other.tag == "Player2")
 		{
 			other.GetComponent<Score>().AddToScore(100);
+
 			Destroy(this.gameObject);
 		}
 	}
