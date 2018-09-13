@@ -430,7 +430,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: really cool!
 --- !u!222 &1131426854
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -569,9 +569,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Play
-
-'
+  m_Text: cameron is
 --- !u!222 &1362388042
 CanvasRenderer:
   m_ObjectHideFlags: 0
