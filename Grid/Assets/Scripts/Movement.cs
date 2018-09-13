@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
 	public int count;
     public float speed = 2.0f;
+
     private Vector3 pos;
     private bool rotated = false;
 	private TrailColliders trailColliders;
@@ -42,27 +43,30 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		// Rotate Right
-        if (Input.GetButtonDown(playerKeys.rotateKey) && Input.GetAxisRaw(playerKeys.rotateKey) > 0 && canTurn)
-        {
-            if (rotated == false)
-            {
+		if (rotated)
+		{
+			if (Input.GetAxisRaw(playerKeys.rotateKey) == 0)
+				rotated = false;
+		}
+		else
+		{
+			// Rotate Right
+			if (Input.GetAxisRaw(playerKeys.rotateKey) > 0.5f && canTurn)
+			{
 				count++;
-                transform.Rotate(0, 90, 0);
-                rotated = true;
-            }
-        }
+				transform.Rotate(0, 90, 0);
+				rotated = true;
+			}
 
-		// Rotate Left
-        if (Input.GetButtonDown(playerKeys.rotateKey) && Input.GetAxisRaw(playerKeys.rotateKey) < 0 && canTurn)
-        {
-            if (rotated == false)
-            {
+			// Rotate Left
+			if (Input.GetAxisRaw(playerKeys.rotateKey) < -0.5f && canTurn)
+			{
 				count++;
-                transform.Rotate(0, -90, 0);
-                rotated = true;
-            }
-        }
+				transform.Rotate(0, -90, 0);
+				rotated = true;
+			}
+		}
+
 		
 		// Jump
         if (Input.GetButtonDown(playerKeys.jumpKey))
@@ -111,10 +115,7 @@ public class Movement : MonoBehaviour
                 pos -= transform.right + transform.right;
             }
         }
-	}
 
-	private void FixedUpdate()
-	{
 		// Update Position 
 		if (pos == transform.position)
 		{
@@ -122,7 +123,7 @@ public class Movement : MonoBehaviour
 			prevPos = pos;
 
 			pos += transform.forward;
-			rotated = false;
+			//rotated = false;
 
 			if (jumping)
 			{
@@ -171,5 +172,10 @@ public class Movement : MonoBehaviour
 		}
 
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+	}
+
+	private void FixedUpdate()
+	{
+
 	}
 }
