@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     private Vector3 pos;
     private bool rotated = false;
 	private TrailColliders trailColliders;
+    private TrailRenderer trailRenderer;
 	private Vector3 prevPos;
     public PlayerInput playerKeys;
 
@@ -37,6 +38,7 @@ public class Movement : MonoBehaviour
         pos = transform.position + transform.forward;
 
 		trailColliders = GetComponent<TrailColliders>();
+        trailRenderer = GetComponent<TrailRenderer>();
 		
     }
 
@@ -119,13 +121,42 @@ public class Movement : MonoBehaviour
 		// Update Position 
 		if (pos == transform.position)
 		{
-			trailColliders.PlaceCollider(prevPos);
+            trailRenderer.enabled = true;
+            trailColliders.PlaceCollider(prevPos);
 			prevPos = pos;
 
-			pos += transform.forward;
-			//rotated = false;
+            if (pos.x >= 100)
+            {
+                pos.x = 0;
+                transform.position = pos; 
+                trailRenderer.enabled = false;
+            }
+            else if (pos.x <= 0)
+            {
+                pos.x = 100;
+                transform.position = pos;
+                trailRenderer.enabled = false;
+            }
 
-			if (jumping)
+            if (pos.z >= 100)
+            {
+                pos.z = 0;
+                transform.position = pos;
+                trailRenderer.enabled = false;
+            }
+            else if (pos.z <= 0)
+            {
+                pos.z = 100;
+                transform.position = pos;
+                trailRenderer.enabled = false;
+            }
+
+			pos += transform.forward;
+
+
+            //rotated = false;
+
+            if (jumping)
 			{
 				if (currentJumpSpace < maxJumpSpaces + maxJumpDelay)
 				{
@@ -172,10 +203,5 @@ public class Movement : MonoBehaviour
 		}
 
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
-	}
-
-	private void FixedUpdate()
-	{
-
 	}
 }
