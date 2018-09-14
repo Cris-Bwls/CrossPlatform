@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrailColliders : MonoBehaviour {
 
+	public float multiplier = 0.85f;
+
 	public GameObject trailColliderPrefab;
 
 	private TrailRenderer trailRenderer;
@@ -18,7 +20,7 @@ public class TrailColliders : MonoBehaviour {
 		trailRenderer = GetComponent<TrailRenderer>();
 		movement = GetComponent<Movement>();
 
-		int colliderNum = (int)(trailRenderer.time * movement.speed);
+		int colliderNum = (int)(trailRenderer.time * movement.speed * multiplier);
 		for (int i = 0; i < colliderNum; ++i)
 		{
 			GameObject temp = Instantiate(trailColliderPrefab);
