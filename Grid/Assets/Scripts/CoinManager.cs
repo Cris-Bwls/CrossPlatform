@@ -14,7 +14,7 @@ public class CoinManager : MonoBehaviour {
 		for (int i = 0; i < 3; i++)
 		{
 			m_CoinList[i] = Instantiate(m_CoinPrefab, this.gameObject.transform);
-			m_CoinList[i].transform.position = new Vector3(Random.value * 100, 0, Random.value * 100);
+			m_CoinList[i].transform.position = new Vector3(Random.value * 100, 0.5f, Random.value * 100);
 		}
 	}
 }
