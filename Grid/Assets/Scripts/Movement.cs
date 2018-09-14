@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
 
 		
 		// Jump
-        if (Input.GetButtonDown(playerKeys.jumpKey))
+        if (Input.GetAxisRaw(playerKeys.jumpKey) > 0.5f)
         {
             if (!jumping)
             {
@@ -82,7 +82,7 @@ public class Movement : MonoBehaviour
         }
 
 		// Tunnel
-        if (Input.GetButtonDown(playerKeys.tunnelKey))
+        if (Input.GetAxisRaw(playerKeys.tunnelKey) < -0.5f)
         {
             if (!tunneling)
             {
@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
         }
 
 		// Dodge Right
-        if (Input.GetButtonDown(playerKeys.dodgeRightKey))
+        if (Input.GetAxisRaw(playerKeys.dodgeRightKey) > 0)
         {
             if(!dodging)
             {
@@ -106,7 +106,7 @@ public class Movement : MonoBehaviour
         }
 
 		// Dodge Left
-        if (Input.GetButtonDown(playerKeys.dodgeLeftKey))
+        if (Input.GetAxisRaw(playerKeys.dodgeLeftKey) > 0)
         {
             if(!dodging)
             {
