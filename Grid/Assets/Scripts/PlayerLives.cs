@@ -8,33 +8,33 @@ public class PlayerLives : MonoBehaviour {
     public int playerLives = 5;
     public bool dead = false;
 
-	void Start ()
+    private int currentLives;
+    private Vector3 pos;
+
+    void Awake ()
     {
-		
+        currentLives = playerLives;
+        //pos = this.transform.position;
 	}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider)
-        {
-            if (playerLives < 1)
-            {
-                dead = true;
-
-            }
-
-            playerLives -= 1;
-            Debug.Log("Player Lives Left " + playerLives);
-        }
-    }
 
      //Update is called once per frame
     void Update ()
     {
-        if(dead == true)
+        if (currentLives > playerLives)
         {
-            //transform.position = new Vector3(50, 0, 50);
+            currentLives = playerLives;
+            Debug.Log(gameObject.tag + " has " + playerLives + " lives left");
 
+            if (playerLives <= 0)
+            {
+                dead = true;
+            }
+
+            if (dead)
+            {
+                
+            }
         }
+
 	}
 }

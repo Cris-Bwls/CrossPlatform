@@ -12,6 +12,7 @@ public class PlayerCollision : MonoBehaviour {
 	private TrailRenderer trailRenderer;
 	private Collider collider;
 	private MeshRenderer meshRenderer;
+    private PlayerLives playerLives;
 
 	private Score m_score;
 
@@ -26,6 +27,7 @@ public class PlayerCollision : MonoBehaviour {
 		collider = GetComponent<Collider>();
 		meshRenderer = GetComponent<MeshRenderer>();
 		m_score = GetComponent<Score>();
+        playerLives = GetComponent<PlayerLives>();
 	}
 
 	private void Update()
@@ -62,6 +64,8 @@ public class PlayerCollision : MonoBehaviour {
 			particleSystem.Play();
 			trailColliders.DisableColliders();
 			trailRenderer.Clear();
+
+            playerLives.playerLives--;
 
 			if(collider.tag == tag)
 			{
