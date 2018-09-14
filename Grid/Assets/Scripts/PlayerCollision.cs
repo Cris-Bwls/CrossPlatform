@@ -73,8 +73,8 @@ public class PlayerCollision : MonoBehaviour {
 			}
 			else
 			{
+				m_score.otherPlayer.AddToScore(m_score.GetScore());
 				m_score.ClearScore();
-				m_score.otherPlayer.AddToScore(100);
 			}
 
 
