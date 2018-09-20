@@ -5,6 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
+
+
+	public void Update()
+	{
+		if (Application.platform == RuntimePlatform.PS4) 
+		{
+			if(Input.GetButtonDown("Submit"))
+			{
+				SceneManager.LoadScene(1);
+			}
+		}
+			
+	}
+
 	public void StartButtonClicked()
 	{
 		SceneManager.LoadScene(1);
@@ -14,5 +28,4 @@ public class MenuButtons : MonoBehaviour
 	{
 		Application.Quit();
 	}
-
 }
