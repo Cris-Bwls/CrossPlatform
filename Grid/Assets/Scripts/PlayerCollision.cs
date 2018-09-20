@@ -65,7 +65,7 @@ public class PlayerCollision : MonoBehaviour {
 			trailColliders.DisableColliders();
 			trailRenderer.Clear();
 
-            playerLives.playerLives--;
+            playerLives.m_playerLives--;
 
 			if(collider.tag == tag)
 			{
