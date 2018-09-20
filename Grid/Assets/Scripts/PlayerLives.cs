@@ -32,7 +32,10 @@ public class PlayerLives : MonoBehaviour {
                 dead = true;
             }
 
-			LifeVisualiser[currentLives].SetActive(false);
+			if (currentLives >= 0 && currentLives <= LifeVisualiser.Length)
+			{
+				LifeVisualiser[currentLives].SetActive(false);
+			}
 
             if (dead)
             {
