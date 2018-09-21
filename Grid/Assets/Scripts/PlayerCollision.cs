@@ -1,6 +1,6 @@
 ﻿/* 
  Authors-
- 
+	Chris
 */
 
 using System.Collections;
@@ -35,41 +35,58 @@ public class PlayerCollision : MonoBehaviour {
         playerLives = GetComponent<PlayerLives>();
 	}
 
+	// Updates any ongoing effects
 	private void Update()
 	{
+		// if collider is NOT enabled
 		if (!collider.enabled)
 		{
+			// IF start phase has not been set
 			if (startPhase == 0)
+				// Set start phase
 				startPhase = Time.realtimeSinceStartup;
 
+			// IF phase time has passed
 			if (Time.realtimeSinceStartup - startPhase > phase)
 			{
+				// Set start phase and invert mesh renderer
 				startPhase = Time.realtimeSinceStartup;
 				meshRenderer.enabled = !meshRenderer.enabled;
 			}
 
+			// IF collider time out has passed
 			if (Time.realtimeSinceStartup - startTimeOut > colliderTimeOut)
 			{
+				// Re-enable collider and mesh renderer
 				collider.enabled = true;
 				meshRenderer.enabled = true;
+
+				// Reset Startphase to 0
 				startPhase = 0;
+				
+				// Stop particle system
 				particleSystem.Stop();
 			}
 		}
 	}
 
-
+	// When player collides it decrements lives and starts effects
 	private void OnCollisionEnter(Collision collision)
     {
         var collider = collision.collider;
 
+		// IF NOT colliding with ground or coin
 		if (collider.tag != "Ground" || collider.tag != "Coin")
 		{
+			// Reset and start Particle system 
 			particleSystem.Stop();
 			particleSystem.Play();
+
+			// Clear and disable trail collider
 			trailColliders.DisableColliders();
 			trailRenderer.Clear();
 
+			// Decrement Player lives
             playerLives.m_playerLives--;
 
 			if(collider.tag == tag)
@@ -82,14 +99,18 @@ public class PlayerCollision : MonoBehaviour {
 				m_score.ClearScore();
 			}
 
-
+			// call DisableCollider
 			DisableCollider();
         }
 	}
 
+	// Disables players collider
 	private void DisableCollider()
 	{
+		// Disable collider
 		collider.enabled = false;
+
+		// Set collider time out
 		startTimeOut = Time.realtimeSinceStartup;
 	}
 }

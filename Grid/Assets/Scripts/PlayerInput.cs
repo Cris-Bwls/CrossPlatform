@@ -1,6 +1,6 @@
 ﻿/* 
  Authors-
- 
+	Chris
 */
 
 using System.Collections;
@@ -24,6 +24,8 @@ public class PlayerInput : MonoBehaviour
 
 	private void Awake()
 	{
+
+		// Add Player number to key string
 		rotateKey += playerNumber.ToString();
 		jumpKey += playerNumber.ToString();
 		tunnelKey += playerNumber.ToString();
