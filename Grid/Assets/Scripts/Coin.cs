@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* 
+ Authors-
+ Josh
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +15,6 @@ public class Coin : MonoBehaviour {
 	void FixedUpdate()
 	{
 		transform.Rotate(0, 0, 4);
-		//transform.rotation = Quaternion.Euler(90, 0, transform.rotation.eulerAngles.z + Time.fixedTime);
 	}
 
 	private void OnTriggerEnter(Collider other)
