@@ -1,7 +1,6 @@
 ﻿/* 
  Authors-
- Chris
- Paul
+	Paul
 */
 
 using System.Collections;
