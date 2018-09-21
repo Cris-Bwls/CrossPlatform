@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22417256, g: 0.37118128, b: 0.4099945, a: 1}
+  m_IndirectSpecularColor: {r: 0.22249573, g: 0.3692871, b: 0.40752462, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1192,6 +1192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CoinPrefab: {fileID: 1327282961843016, guid: eb03cc59f2c9cda48a706492c4f5aca2,
     type: 2}
+  m_startingCoinAmount: 3
 --- !u!4 &1012632671
 Transform:
   m_ObjectHideFlags: 0

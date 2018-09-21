@@ -1,6 +1,7 @@
 ﻿/* 
  Authors-
 	Chris
+ Josh
 */
 
 using System.Collections;
@@ -19,7 +20,7 @@ public class PlayerCollision : MonoBehaviour {
 	private MeshRenderer meshRenderer;
     private PlayerLives playerLives;
 
-	private Score m_score;
+	private Score m_score;		//a reference to the score
 
 	private float startTimeOut;
 	private float startPhase;
@@ -89,11 +90,12 @@ public class PlayerCollision : MonoBehaviour {
 			// Decrement Player lives
             playerLives.m_playerLives--;
 
+			//if the a player runs into their own tail they lose their points
 			if(collider.tag == tag)
 			{
 				m_score.ClearScore();
 			}
-			else
+			else//if you run into another player you give them your points
 			{
 				m_score.otherPlayer.AddToScore(m_score.GetScore());
 				m_score.ClearScore();
